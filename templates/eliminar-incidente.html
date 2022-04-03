@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block titleHeader %}
+<title></title>
+{% endblock titleHeader %} 
+
+{% block titlePage %}
+<h1>Desea eliminar el incidente con el folio:  {{object.folio}}</h1>
+{% endblock titlePage %}
+    
+{% block content %}
+<form method="POST" class="ml-5">
+    {% csrf_token %}
+    <button class="btn btn-danger btn-lg ml-4" type="submit">Confirmar eliminacion</button>
+</form>
+
+{% endblock content %}

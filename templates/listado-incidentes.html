@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block titleHeader %}
+<title></title>
+{% endblock titleHeader %} 
+
+{% block titlePage %}
+<h1>Listado de incidentes</h1>
+{% endblock titlePage %}
+    
+{% block content %}
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Folio</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Persona afectada</th>
+        <th>Tipo de incidente</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for incidente in object_list %}
+        <tr>
+            <td>{{incidente.folio}}</td>
+            <td>{{incidente.fecha}}</td>
+            <td>{{incidente.hora}}</td>
+            <td>{{incidente.nombreAfectado}}</td>
+            <td>{{incidente.tipoIncidente.tipo}}</td>
+            <td><a href="{% url 'actualizar_incidente' incidente.id %}"><i class="bi bi-pencil-square"></i></a></td>      
+            <td><a href="{% url 'eliminar_incidente' incidente.id %}"><i class="bi bi-file-earmark-x"></i></a></td>      
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+
+{% if is_paginated %}
+
+    {% if page_obj.has_previous %}
+        <a href="?page={{page_obj.previous_page_number}}"><i class="bi bi-arrow-left"></i>Atras</a>
+    {% endif %}
+
+    {% for pagina in paginator.page_range %}
+        <a href="?page={{pagina}}">{{pagina}}</a>
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{page_obj.next_page_number}}">Adelante<i class="bi bi-arrow-right"></i></a>
+    {% endif %}
+
+{% endif %}
+
+{% endblock content %}

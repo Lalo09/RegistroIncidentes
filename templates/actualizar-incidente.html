@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block titleHeader %}
+<title></title>
+{% endblock titleHeader %} 
+
+{% block titlePage %}
+<h1>Modificar incidente</h1>
+{% endblock titlePage %}
+    
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-success btn-lg mb-5" type="submit">Actualizar <i class="bi bi-arrow-clockwise"></i></button>
+</form>
+
+{% endblock content %}

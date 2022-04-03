@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block titleHeader %}
+<title>{{titulo}}</title>
+{% endblock titleHeader %} 
+
+{% block titlePage %}
+
+{% endblock titlePage %}
+    
+{% block content %}
+
+{% if messages %}
+    <div class="alert alert-danger" role="alert">
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    </div>    
+{% endif %}
+
+<h1 class="ml-5">Iniciar sesion <i class="bi bi-person-circle"></i></h1>
+<br>
+<form method="POST" action="" style="margin-button:100">
+    {% csrf_token %}
+    <div class="container-fluid">
+        <div class="row" id="map_section">
+            <div class="col-4">
+                <label for="username">Usuario:</label>
+                <input type="text" name="username" class="form-control" />
+                <br>
+                <label for="password">Contraseña:</label>
+                <input type="password" name="password" class="form-control" />
+                <br>
+                <button class="btn btn-primary" type="submit" value="Ingresar">Ingresar <i class="bi bi-box-arrow-in-right"></i></button>
+            </div>
+        </div>
+    </div>    
+</form>
+
+{% endblock content %}
